@@ -1,1 +1,63 @@
 <!--Implementación de la interfaz de usuario-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora</title>
+	<meta charset="utf-8">
+	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+	
+</head>
+<body>
+	<h2 align="center">Calculadora</h2>
+		<table border="1" align="center" width="400px" cellpadding="4">	
+			    <tr>		
+					<td align="center"><b>Primer dato:</b></td>
+					<td align="center">
+						<input type="number" name="n1" id="n1" size="10">
+					</td>
+			    </tr>
+
+			    <tr>		
+					<td align="center"><b>Segundo dato:</b></td>
+					<td align="center">
+						<input type="number" name="n2" id="n2" size="10">
+					</td>
+			    </tr>
+
+			    <tr>		
+					<td align="center"><b>Operación:</b></td>
+					<td align="center">
+						<input type="button" class="button" name="suma.php" value="Suma"/>
+						<input type="button" class="button" name="resta.php" value="Resta"/>
+						<input type="button" class="button" name="producto.php" value="Multiplicación"/>
+						<input type="button" class="button" name="division.php" value="División"/>
+					</td>
+			    </tr>
+			  
+			     <tr>		
+					<td align="center"><b>Resultado:</b></td>
+					<td align="center">
+						<input type="number"  id="result" size="10">
+					</td>
+                </tr> 
+                
+                <script type="text/javascript">
+                    $(".button").click(function(){
+                        var n=$(this).attr('name');
+                        var n1=$('#n1').val();
+                        var n2=$('#n2').val();
+
+                        $.ajax ({
+                        url:n,
+                        type: "POST",
+                        data: {n1:n1, n2:n2},
+                        success:function(response){
+                            console.log(response);
+                            $('#result').val(response);
+                        }
+                    });
+                });
+            </script>
+    </table>
+</body>
+</html>
